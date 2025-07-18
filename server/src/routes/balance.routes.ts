@@ -5,6 +5,49 @@ import { userModel } from "../models/user.models";
 
 const router: Router = express.Router();
 
+/**
+ * @swagger
+ * /api/balance:
+ *   get:
+ *     summary: Récupérer le solde de l'utilisateur connecté
+ *     tags:
+ *       - Balance
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Solde récupéré avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 balance:
+ *                   type: number
+ *                   example: 150
+ *       404:
+ *         description: Utilisateur non trouvé
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Utilisateur non trouvé
+ *       500:
+ *         description: Erreur serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Erreur serveur
+ *                 error:
+ *                   type: string
+ */
 router.get("/", protect, async (req: Request, res: Response) => {
   try {
     const user = await userModel.findById(req.user?.id);

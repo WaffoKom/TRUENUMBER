@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { userModel, UserRole, IUser } from "../models/user.models";
+import { userModel, UserRole } from "../models/user.models";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 
 export const createAdmin = async (req: Request, res: Response) => {
   try {

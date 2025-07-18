@@ -48,7 +48,6 @@ async function main() {
   app.use("/api/balance", balanceRoutes);
   app.use("/api/history", historyRoutes);
   app.use("/api/admin", adminRoutes);
-
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   app.listen(PORT, () =>

@@ -1,5 +1,4 @@
-import express from "express";
-import { Request, Response } from "express";
+import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
@@ -15,20 +14,32 @@ import gameRoutes from "./routes/game.routes";
 import balanceRoutes from "./routes/balance.routes";
 import historyRoutes from "./routes/history.routes";
 
-dotenv.config();
+dotenv.config(); // Charge les variables d'env
 
 const app = express();
 
+// Middlewares
 app.use(express.json());
-app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+// Sécurité : activer helmet seulement en production
+if (process.env.NODE_ENV === "production") {
+  app.use(helmet());
+}
+
+// CORS : origine différente selon environnement
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "localhost://3000",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? process.env.FRONTEND_URL
+        : "http://localhost:3000",
     credentials: true,
   })
 );
-app.use(cookieParser());
+
+// Pour les popups Google OAuth
 app.use((req: Request, res: Response, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   next();
@@ -37,29 +48,36 @@ app.use((req: Request, res: Response, next) => {
 const PORT = process.env.PORT || 7200;
 
 async function main() {
-  // ... (Code de configuration de l'application)
   try {
-    await connectToDB(); // 👈 Connexion d'abord
+    await connectToDB();
   } catch (err) {
     console.error("🚫 Le serveur ne démarrera pas sans base de données !");
-    process.exit(1); // 👉 quitte l’application
+    process.exit(1);
   }
 
+  // Routes
   app.get("/", (req, res) => {
     res.status(200).send("Hello world");
   });
+
   app.use("/api/auth", authRoutes);
   app.use("/api/users", userRoutes);
   app.use("/api/game", gameRoutes);
   app.use("/api/balance", balanceRoutes);
   app.use("/api/history", historyRoutes);
   app.use("/api/admin", adminRoutes);
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  app.listen(PORT, () =>
-    console.log(`Connexion etablit avec succes au port ${PORT}`)
-  );
+  // Swagger activé seulement en développement
+  if (process.env.NODE_ENV !== "production") {
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  }
+
+  app.listen(PORT, () => {
+    console.log(
+      `✅ Serveur lancé sur le port ${PORT} en mode ${process.env.NODE_ENV}`
+    );
+  });
 }
-export default app;
 
+export default app;
 main();

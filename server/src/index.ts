@@ -1,4 +1,5 @@
 import express from "express";
+import { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
@@ -28,7 +29,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   next();
 });

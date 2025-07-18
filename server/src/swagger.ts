@@ -55,7 +55,7 @@ import swaggerJsDoc from "swagger-jsdoc";
  *         userId: "60dbf4d8fdfd8e35b8f8df1d"
  *         gameId: "game_123"
  *         date: "2025-07-17T12:00:00.000Z"
- *         generatedNumber: 42
+ *         generatedNumber: 72
  *         result: gagné
  *         balanceChange: 100
  *         newBalance: 200

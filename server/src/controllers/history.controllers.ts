@@ -19,6 +19,9 @@ export const getAllHistory = async (req: Request, res: Response) => {
     const allHistory = await GameHistoryModel.find().sort({ date: -1 });
     res.json(allHistory);
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error });
+    res.status(500).json({
+      message: "Erreur serveur",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 };

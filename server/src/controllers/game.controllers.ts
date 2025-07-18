@@ -39,6 +39,9 @@ export const playGame = async (req: Request, res: Response) => {
     await gameRecord.save();
     res.json({ result, generatedNumber, newBalance: user.balance });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error });
+    res.status(500).json({
+      message: "Erreur serveur",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 };

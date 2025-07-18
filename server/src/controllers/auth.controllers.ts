@@ -56,7 +56,10 @@ export const login = async (req: Request, res: Response) => {
         user: { id: user._id, username: user.username, role: user.role },
       });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error });
+    res.status(500).json({
+      message: "Erreur serveur",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 };
 

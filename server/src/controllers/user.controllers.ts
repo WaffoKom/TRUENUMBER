@@ -18,7 +18,10 @@ export const getAllUsers = async (req: Request, res: Response) => {
     const users = await userModel.find().select("-password");
     res.json(users);
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error });
+    res.status(500).json({
+      message: "Erreur serveur",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 };
 
@@ -62,7 +65,10 @@ export const updateUser = async (req: Request, res: Response) => {
 
     res.json({ message: "Utilisateur mis à jour", user: updatedUser });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error });
+    res.status(500).json({
+      message: "Erreur serveur",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 };
 
@@ -76,6 +82,9 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     res.json({ message: "Utilisateur supprimé" });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error });
+    res.status(500).json({
+      message: "Erreur serveur",
+      error: error instanceof Error ? error.message : String(error),
+    });
   }
 };

@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import swaggerUi from "swagger-ui-express";
-import swaggerDoc from "./";
+import swaggerSpec from "./swagger";
 import { connectToDB } from "./config/db.connect";
 
 import authRoutes from "./routes/auth.routes";
@@ -49,11 +49,12 @@ async function main() {
   app.use("/api/history", historyRoutes);
   app.use("/api/admin", adminRoutes);
 
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   app.listen(PORT, () =>
     console.log(`Connexion etablit avec succes au port ${PORT}`)
   );
 }
 export default app;
+
 main();

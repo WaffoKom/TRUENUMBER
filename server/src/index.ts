@@ -33,7 +33,7 @@ app.use(
   cors({
     origin: process.env.NODE_ENV
       ? process.env.FRONTEND_URL
-      : "http://localhost:3000",
+      : "https://truenumber.vercel.app",
     credentials: true,
   })
 );

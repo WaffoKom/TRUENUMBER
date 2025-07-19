@@ -31,9 +31,7 @@ if (process.env.NODE_ENV === "production") {
 // CORS : origine différente selon environnement
 app.use(
   cors({
-    origin: process.env.NODE_ENV
-      ? process.env.FRONTEND_URL
-      : "https://truenumber.vercel.app",
+    origin: process.env.FRONTEND_URL || "https://truenumber.vercel.app",
     credentials: true,
   })
 );

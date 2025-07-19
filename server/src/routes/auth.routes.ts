@@ -29,7 +29,7 @@ const router: Router = express.Router();
  *               password:
  *                 type: string
  *               phone:
- *                 type: number
+ *                 type: string
  *     responses:
  *       201:
  *         description: Utilisateur créé

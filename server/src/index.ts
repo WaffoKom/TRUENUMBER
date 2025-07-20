@@ -64,7 +64,7 @@ async function main() {
   app.use("/api/history", historyRoutes);
   app.use("/api/admin", adminRoutes);
 
-  // Swagger activé seulement en développement
+  // Swagger ui
   if (process.env.NODE_ENV !== "production") {
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   }

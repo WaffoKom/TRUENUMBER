@@ -1,15 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import {
-  LayoutDashboard,
-  CircleUserRound,
-  Settings,
-  Ticket,
-  Users,
-  Bus,
-  Key,
-} from "lucide-react";
+import { LayoutDashboard, Settings, Users, Bus } from "lucide-react";
 import Link from "next/link";
 import apiClient from "@/lib/api/client"; // axios instance avec withCredentials
 
@@ -28,14 +20,22 @@ const navItemsByRole: Record<
   { label: string; icon: React.ReactNode; path: string }[]
 > = {
   client: [
-    { label: "Users", icon: <Users size={20} />, path: "/users" },
+    //     { label: "Users", icon: <Users size={20} />, path: "/users" },
     { label: "Play Game", icon: <Bus size={20} />, path: "/game" },
-    { label: "My Game History", icon: <LayoutDashboard size={20} />, path: "" },
+    {
+      label: "My Game History",
+      icon: <LayoutDashboard size={20} />,
+      path: "/history",
+    },
   ],
   admin: [
     { label: "Users", icon: <Users size={20} />, path: "/users" },
     { label: "Play Game", icon: <Bus size={20} />, path: "/game" },
-    { label: "My Game History", icon: <LayoutDashboard size={20} />, path: "" },
+    {
+      label: "My Game History",
+      icon: <LayoutDashboard size={20} />,
+      path: "/history",
+    },
     {
       label: "All Users Games History",
       icon: <LayoutDashboard size={20} />,

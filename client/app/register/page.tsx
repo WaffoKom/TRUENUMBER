@@ -116,7 +116,7 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={signupMutation.isPending}
-          className="p-3 bg-[#f0652b] w-full  font-medium rounded-bl-full rounded-tl-full rounded-br-full rounded-tr-full text-white hover:cursor-pointer mb-3"
+          className="p-3 bg-[#f0652b] w-full  font-medium rounded-bl-full rounded-tl-full rounded-br-full rounded-tr-full text-white hover:cursor-pointer hover:bg-orange-600 mb-3"
         >
           {signupMutation.isPending ? "Register..." : "Register"}
         </button>

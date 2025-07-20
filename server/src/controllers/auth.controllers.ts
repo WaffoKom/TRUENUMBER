@@ -41,7 +41,7 @@ export const register = async (req: Request, res: Response) => {
     res
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
       })
       .status(201)
       .json({

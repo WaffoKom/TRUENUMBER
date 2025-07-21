@@ -125,7 +125,18 @@ export default function LoginPage() {
           disabled={loginMutation.isPending}
           className="p-3 bg-[#f0652b] w-full  font-medium rounded-bl-full rounded-tl-full rounded-br-full rounded-tr-full text-white hover:cursor-pointer hover:bg-orange-600 mb-3"
         >
-          {loginMutation.isPending ? "Continue..." : "Continue"}
+          {loginMutation.isPending ? (
+            <button
+              disabled={loginMutation.isPending}
+              className={`px-4 py-2  text-white rounded ${
+                loginMutation.isPending ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              Continue...
+            </button>
+          ) : (
+            "Continue"
+          )}
         </button>
       </form>
     </div>

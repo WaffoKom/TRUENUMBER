@@ -116,17 +116,38 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={signupMutation.isPending}
-          className="p-3 bg-[#f0652b] w-full  font-medium rounded-bl-full rounded-tl-full rounded-br-full rounded-tr-full text-white hover:cursor-pointer hover:bg-orange-600 mb-3"
+          className={`flex items-center justify-center p-3 w-full font-medium rounded-full text-white transition-colors mb-3
+    ${
+      signupMutation.isPending
+        ? "bg-[#f0652b] opacity-50 cursor-not-allowed"
+        : "bg-[#f0652b] hover:bg-orange-600"
+    }
+  `}
         >
           {signupMutation.isPending ? (
-            <button
-              disabled={signupMutation.isPending}
-              className={`px-4 py-2  text-white rounded ${
-                signupMutation.isPending ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
+            <>
+              <svg
+                className="animate-spin h-5 w-5 mr-2 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                />
+              </svg>
               Register...
-            </button>
+            </>
           ) : (
             "Register"
           )}

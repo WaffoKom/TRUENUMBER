@@ -46,17 +46,17 @@ export const createUser = async (req: Request, res: Response) => {
 
     await newUser.save();
 
-    // res.status(201).json({ message: "Utilisateur créé", user: newUser });
+    res.status(201).json({ message: "Utilisateur créé", user: newUser });
 
-    res.status(201).json({
-      message: "Utilisateur créé",
-      user: {
-        id: newUser._id,
-        username: newUser.username,
-        email: newUser.email,
-        balance: newUser.balance,
-      },
-    });
+    // res.status(201).json({
+    //   message: "Utilisateur créé",
+    //   user: {
+    //     id: newUser._id,
+    //     username: newUser.username,
+    //     email: newUser.email,
+    //     balance: newUser.balance,
+    //   },
+    // });
   } catch (error) {
     res.status(500).json({ message: "Erreur serveur", error });
   }

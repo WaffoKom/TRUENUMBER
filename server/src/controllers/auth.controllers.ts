@@ -27,6 +27,7 @@ export const register = async (req: Request, res: Response) => {
       email,
       password: hashedPassword,
       phone,
+      balance: 100,
     });
     await user.save();
 
@@ -47,7 +48,12 @@ export const register = async (req: Request, res: Response) => {
       .json({
         message: "Compte créé avec succès",
         token,
-        user: { id: user._id, username: user.username, role: user.role },
+        user: {
+          id: user._id,
+          username: user.username,
+          role: user.role,
+          balance: user.balance,
+        },
       });
   } catch (error) {
     res.status(500).json({

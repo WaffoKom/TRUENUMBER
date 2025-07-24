@@ -13,6 +13,7 @@ import userRoutes from "./routes/user.routes";
 import gameRoutes from "./routes/game.routes";
 import balanceRoutes from "./routes/balance.routes";
 import historyRoutes from "./routes/history.routes";
+import gameroom from "./routes/gameRoom.routes";
 
 dotenv.config(); // Charge les variables d'env
 
@@ -62,6 +63,7 @@ async function main() {
   app.use("/api/game", gameRoutes);
   app.use("/api/balance", balanceRoutes);
   app.use("/api/history", historyRoutes);
+  app.use("/api/gameroom", gameroom);
   app.use("/api/admin", adminRoutes);
 
   // Swagger ui
